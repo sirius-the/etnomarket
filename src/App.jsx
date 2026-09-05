@@ -337,18 +337,11 @@ function statusColors(status) {
   return { bg: "#E8F3EF", fg: C.emeraldDark };
 }
 
-/* ---------- НАЧАЛЬНЫЕ ТОВАРЫ ---------- */
-const SEED_PRODUCTS = [
-  { id: "p1", subcat: "saukele", name: { kz: "Салтанатты сәукеле", ru: "Праздничное саукеле" }, price: 185000, master: "Айгүл Сәтбаева", phone: "+7 701 234 56 78", region: { kz: "Түркістан", ru: "Туркестан" }, desc: { kz: "Күн розеткасымен әшекейленген, күміс жіппен кестеленген дәстүрлі сәукеле.", ru: "Традиционное саукеле с солнечными розетками, вышитое серебряной нитью." }, status: "active", ownerPhone: null },
-  { id: "p2", subcat: "shashbau", name: { kz: "Күміс шашбау", ru: "Серебряный шашбау" }, price: 42000, master: "Данияр Нұрланов", phone: "+7 707 111 22 33", region: { kz: "Алматы", ru: "Алматы" }, desc: { kz: "Қошқармүйіз өрнегімен безендірілген қос бұрымдық шашбау.", ru: "Шашбау для двух кос с орнаментом қошқармүйіз." }, status: "active", ownerPhone: null },
-  { id: "p3", subcat: "sholpy", name: { kz: "Сыңғырлы шолпы", ru: "Звонкое шолпы" }, price: 38000, master: "Гүлмира Ахметова", phone: "+7 705 456 78 90", region: { kz: "Шымкент", ru: "Шымкент" }, desc: { kz: "Жеңіл күміс құймалармен безендірілген, жүруге кедергі келтірмейтін шолпы.", ru: "Шолпы из лёгких серебряных подвесок, не мешающих движению." }, status: "active", ownerPhone: null },
-  { id: "p4", subcat: "bilezik", name: { kz: "Құдағи білезік жұбы", ru: "Пара браслетов құдағи" }, price: 76000, master: "Ләззат Тұрсынова", phone: "+7 700 222 33 44", region: { kz: "Тараз", ru: "Тараз" }, desc: { kz: "Екі отбасының арасында сыйға тартуға арналған қосарлы білезік.", ru: "Парный браслет для обмена между семьями сватов." }, status: "active", ownerPhone: null },
-  { id: "p5", subcat: "bilezik", name: { kz: "Жұқа өрнекті білезік", ru: "Тонкий узорный браслет" }, price: 54000, master: "Асем Қайратқызы", phone: "+7 708 999 88 77", region: { kz: "Астана", ru: "Астана" }, desc: { kz: "Күнделікті киюге ыңғайлы, жеңіл күміс білезік.", ru: "Лёгкий серебряный браслет для повседневной носки." }, status: "active", ownerPhone: null },
-  { id: "p6", subcat: "zhuzik", name: { kz: "Тазалық жүзігі", ru: "Кольцо «Тазалық»" }, price: 27000, master: "Марат Есенов", phone: "+7 702 345 67 89", region: { kz: "Қызылорда", ru: "Кызылорда" }, desc: { kz: "Дәстүр бойынша тағамды сынауға арналған таза күмістен жасалған жүзік.", ru: "Кольцо из чистого серебра — по традиции для пробы пищи." }, status: "active", ownerPhone: null },
-  { id: "p7", subcat: "zhuzik", name: { kz: "Жай жүзік", ru: "Простое кольцо" }, price: 21000, master: "Роза Бекова", phone: "+7 747 555 22 11", region: { kz: "Ақтөбе", ru: "Актобе" }, desc: { kz: "Мөлдір, ешбір тасы жоқ, күнделікті жүзік.", ru: "Гладкое кольцо без камней, на каждый день." }, status: "active", ownerPhone: null },
-  { id: "p8", subcat: "sakina", name: { kz: "Құсмұрын сақина", ru: "Перстень «Құсмұрын»" }, price: 63000, master: "Айдос Жандаров", phone: "+7 771 888 44 22", region: { kz: "Түркістан", ru: "Туркестан" }, desc: { kz: "Қалыңдыққа сәттілік тілейтін дәстүрлі құсмұрын пішінді сақина.", ru: "Традиционный перстень в форме птичьего клюва — на счастье невесте." }, status: "active", ownerPhone: null },
-  { id: "p9", subcat: "shekelik", name: { kz: "Шекелік алқа", ru: "Нагрудный шекелік" }, price: 91000, master: "Бибігүл Сағындықова", phone: "+7 775 321 09 87", region: { kz: "Семей", ru: "Семей" }, desc: { kz: "Қошқармүйіз және күн белгілерімен көмкерілген кең шекелік.", ru: "Широкое нагрудное украшение с орнаментом қошқармүйіз и солярными знаками." }, status: "active", ownerPhone: null },
-];
+/* Ранее здесь был жёстко зашитый демо-набор товаров (SEED_PRODUCTS),
+   который подставлялся при самой первой загрузке сайта. По просьбе
+   владелицы сайта — убран полностью: теперь при первом запуске
+   каталог всегда стартует пустым, и в нём никогда не появятся
+   товары "по умолчанию", которые нужно было бы удалять вручную. */
 
 /* ---------- МЕЛКИЕ КОМПОНЕНТЫ ---------- */
 
@@ -447,7 +440,7 @@ function ResponsiveStyles() {
         grid-template-columns: 1fr 1fr;
         gap: 12px;
       }
-      @media (min-width: 820px) {
+      @media (min-width: 680px) {
         .etno-outer-wrap {
           padding: 0;
           align-items: stretch;
@@ -514,7 +507,7 @@ export default function App() {
   const [cat, setCat] = useState(null);
   const [sub, setSub] = useState(null);
   const [productId, setProductId] = useState(null);
-  const [products, setProducts] = useState(SEED_PRODUCTS);
+  const [products, setProducts] = useState([]);
   const [users, setUsers] = useState([]);
   const [session, setSession] = useState(() => localGet("etno_session", null));
   const [messages, setMessages] = useState([]);
@@ -531,32 +524,58 @@ export default function App() {
 
   /* ---- загрузка общих данных из Supabase (переиспользуется:
      при первом открытии, по таймеру, и при возврате во вкладку) ---- */
-  const refreshSharedData = async () => {
+  const refreshSharedData = async (isInitial = false) => {
     const [prodRaw, usersRaw, msgRaw, subRaw] = await Promise.all([
       sharedGet("etno_products"),
       sharedGet("etno_users"),
       sharedGet("etno_messages"),
       sharedGet("etno_custom_subcats"),
     ]);
-    try {
-      const parsed = prodRaw ? JSON.parse(prodRaw) : null;
-      setProducts(Array.isArray(parsed) && parsed.length ? parsed : SEED_PRODUCTS);
-    } catch (e) {
-      setProducts(SEED_PRODUCTS);
+
+    /* Важно: пустой список ([]) — это ЗАКОННОЕ состояние (например, вы
+       удалили все товары), а не "данных ещё нет". Раньше здесь была
+       ошибка: любой пустой массив подменялся набором SEED_PRODUCTS,
+       из-за чего удалённые товары "воскресали" каждые 15 секунд.
+       Теперь: если с сервера пришёл настоящий массив (даже пустой) —
+       используем его как есть. SEED_PRODUCTS подставляется только
+       один раз, при самой первой загрузке сайта, если на сервере ещё
+       вообще нет записи (prodRaw === null). Если запись просто не
+       удалось прочитать (сбой сети при фоновом опросе) — не трогаем
+       уже показанные данные, чтобы ничего не затереть по ошибке. */
+
+    if (prodRaw !== null) {
+      try {
+        const parsed = JSON.parse(prodRaw);
+        if (Array.isArray(parsed)) setProducts(parsed);
+      } catch (e) {}
+    } else if (isInitial) {
+      setProducts([]);
     }
-    try {
-      setUsers(usersRaw ? JSON.parse(usersRaw) : []);
-    } catch (e) {
+
+    if (usersRaw !== null) {
+      try {
+        const parsed = JSON.parse(usersRaw);
+        if (Array.isArray(parsed)) setUsers(parsed);
+      } catch (e) {}
+    } else if (isInitial) {
       setUsers([]);
     }
-    try {
-      setMessages(msgRaw ? JSON.parse(msgRaw) : []);
-    } catch (e) {
+
+    if (msgRaw !== null) {
+      try {
+        const parsed = JSON.parse(msgRaw);
+        if (Array.isArray(parsed)) setMessages(parsed);
+      } catch (e) {}
+    } else if (isInitial) {
       setMessages([]);
     }
-    try {
-      setCustomSubcats(subRaw ? JSON.parse(subRaw) : []);
-    } catch (e) {
+
+    if (subRaw !== null) {
+      try {
+        const parsed = JSON.parse(subRaw);
+        if (Array.isArray(parsed)) setCustomSubcats(parsed);
+      } catch (e) {}
+    } else if (isInitial) {
       setCustomSubcats([]);
     }
   };
@@ -565,7 +584,7 @@ export default function App() {
   useEffect(() => {
     let cancelled = false;
     (async () => {
-      await refreshSharedData();
+      await refreshSharedData(true);
       if (!cancelled) setReady(true);
     })();
     return () => {
